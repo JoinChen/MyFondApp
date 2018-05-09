@@ -1,0 +1,4 @@
+# MyFondApp
+这是一个控件使用的联系项目，其中包含BottomNavigationBar，以及MD风格的AppBarLayout+ToolBar+Tablayout+ViewPager的布局风格，然后利用Swiprefresh
++RecycleView实现滑动组件结合ToolBar可以进行滑动效果；
+RecycleView的适配器利用BaseRecycleViewHelperAdapter（万能适配器）实现下拉刷新，上拉加载以及item和item的子view的点击和长点击事件等的功能的实现；
