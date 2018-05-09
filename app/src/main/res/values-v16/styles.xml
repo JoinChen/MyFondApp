@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="android:fontFamily"> @font/product_sans_italic</item>-->
+        <!--<item name="actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>-->
+        <!--<item name="android:actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
+
+    <!--<style name="AppThemeFond" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="android:fontFamily"> @font/product_sans_regular</item>-->
+    <!--</style>-->
+</resources>
