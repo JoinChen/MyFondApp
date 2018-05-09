@@ -3,4 +3,3 @@
 +RecycleView实现滑动组件结合ToolBar可以进行滑动效果；
 RecycleView的适配器利用BaseRecycleViewHelperAdapter（万能适配器）实现下拉刷新，上拉加载以及item和item的子view的点击和长点击事件等的功能的实现；
 
-测试push后的github的效果
