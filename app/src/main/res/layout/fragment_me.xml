@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_me"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--contentScrim是设置折叠后toolbar的颜色
+        1.scroll:值设为scroll的View会跟随滚动事件一起发生移动；
+
+        所有想滚动出屏幕的view都需要设置这个flag，没有设置这个flag的view将被固定在屏幕顶部。
+
+        2.enterAlways:值设为enterAlways的View,当ScrollView往下滚动时，该View会直接往下滚动，而不用考虑ScrollView是否在滚动；
+
+        这个flag让任意向下的滚动都会导致该view变为可见，如启用快速“返回模式”。
+
+        3.exitUntilCollapsed:值设为exitUntilCollapsed的View，当这个View要往上逐渐“消逝”时，会一直往上滑动，直到剩下的的高度
+        达到它的最小高度后，再响应ScrollView的内部滑动事件。
+
+        4.enterAlwaysCollapsed:是enterAlways的附加选项，一般跟enterAlways一起使用，它是指，View在往下“出现”的时候，首先
+        是enterAlways效果，当View的高度达到最小高度时(注意你的view需要设置minHeight属性)，View就暂时不去往下滚动，
+        直到ScrollView滑动到顶部不再滑动时，View再继续往下滑动，直到滑到View的顶部结束。-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collaps_toolbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways">
+
+            <!--contentDescription帮助色弱或盲人，朗读时会读次部分内容
+          scrollbarAlwaysDrawVerticalTrack  在ScrollBar淡出之后，ScrollBar一般是完全看不见的
+          ，但是我们可以选择Track始终可见：
+          scrollbarStyle属性介绍如下：
+          insideOverlay：默认值，表示在padding区域内并且覆盖在在内容上面，会遮挡些内容
+          insideInset：表示在padding区域内，并且会插入在内容后面，不会遮挡内容
+          outsideOverlay：表示在padding区域外并且覆盖在view上，如果滚动条比padding大可能会遮挡内容。
+          outsideInset：表示在padding区域外并且，插入后面，不会遮挡内容-->
+            <ImageView
+                android:id="@+id/iv_me"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:contentDescription="@string/app_name"
+                android:scrollbarStyle="insideInset"
+                android:fitsSystemWindows="true"
+                android:src="@drawable/placeholder" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_me"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:background="@android:color/transparent"
+                app:titleTextColor="@color/colorAccent">
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nested_scroll_view"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <WebView
+            android:id="@+id/webview_me"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </WebView>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

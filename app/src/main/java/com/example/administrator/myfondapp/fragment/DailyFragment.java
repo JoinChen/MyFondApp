@@ -1,5 +1,6 @@
 package com.example.administrator.myfondapp.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.myfondapp.R;
+import com.example.administrator.myfondapp.activity.DetailActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -81,7 +84,7 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), position + " ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -89,7 +92,9 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                if (view.getId() == R.id.iv_test){
-                   Toast.makeText(getActivity(), "图片点击事件"+position , Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getActivity(), "图片点击事件"+position+" " , Toast.LENGTH_SHORT).show();
+                   Intent intent = new Intent(getActivity(), DetailActivity.class);
+                   startActivity(intent);
                }
             }
         });

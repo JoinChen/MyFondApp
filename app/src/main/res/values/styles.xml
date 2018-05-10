@@ -17,8 +17,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowActionBar">false</item><!--是否打开actionbar-->
         <item name="android:windowNoTitle">true</item><!--窗体是否有标题-->
+        <item name="colorControlNormal">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
+    </style>
 
 </resources>
