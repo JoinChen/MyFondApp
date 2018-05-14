@@ -17,16 +17,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.administrator.myfondapp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018\5\10 0010.
  */
-
 public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.appbar_me)
     AppBarLayout appBarLayout_me;
@@ -40,6 +43,8 @@ public class DetailActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.webview_me)
     WebView webView_me;
+    @BindView(R.id.tv_arouter)
+    TextView tv_arouter_test;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,5 +78,14 @@ public class DetailActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @OnClick ({R.id.tv_arouter})
+    public void myOnclick(View view){
+        switch (view.getId()){
+            case R.id.tv_arouter://Arouter路由器按钮点击测试
+                ARouter.getInstance().build("/com/ArouterActivity").navigation();
+                break;
+        }
     }
 }

@@ -65,21 +65,36 @@
                 app:titleTextColor="@color/colorAccent">
 
             </android.support.v7.widget.Toolbar>
+
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
+    <!--NestedScrollView只能包含一个字控件-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/nested_scroll_view"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <WebView
-            android:id="@+id/webview_me"
+        <LinearLayout
+            android:id="@+id/study_explore_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        </WebView>
+            <TextView
+                android:id="@+id/tv_arouter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Arouter路由器"
+                android:textSize="30dp" />
+
+            <WebView
+                android:id="@+id/webview_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </WebView>
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
