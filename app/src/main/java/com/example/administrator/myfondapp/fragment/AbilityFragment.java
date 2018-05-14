@@ -19,6 +19,13 @@ import butterknife.ButterKnife;
 public class AbilityFragment extends Fragment {
     private View view;
 
+    public AbilityFragment() {
+    }
+
+    public static AbilityFragment newInstance(){
+        return new AbilityFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

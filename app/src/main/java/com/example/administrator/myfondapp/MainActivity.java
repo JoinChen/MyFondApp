@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         getFragmentArrayList();
         setDefaultFragment();
         bottom_nav.setTabSelectedListener(this);
-
     }
 
     /***
@@ -106,9 +105,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     * */
     private ArrayList<Fragment> getFragmentArrayList(){
         fragmentArrayList = new ArrayList<>();
-        fragmentArrayList.add(new ConsultFragment());
-        fragmentArrayList.add(new AbilityFragment());
-        fragmentArrayList.add(new MineFragment());
+        fragmentArrayList.add(ConsultFragment.newInstance());
+        fragmentArrayList.add(AbilityFragment.newInstance());
+        fragmentArrayList.add(MineFragment.newInstance());
         return fragmentArrayList;
     }
 

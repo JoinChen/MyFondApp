@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,9 +19,13 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.administrator.myfondapp.R;
 import com.example.administrator.myfondapp.activity.DetailActivity;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,6 +39,8 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     RecyclerView rv_daily;
     @BindView(R.id.swipeLayout)
     SwipeRefreshLayout swipeRefreshLayout;
+    private int mYear, mMonth, mDay;
+    private FloatingActionButton fab;
     private PullToRefreshAdapter adapter;
     private static final int TOTAL_COUNTER = 1000;
     private static final int PAGE_SIZE = 6;//用于判断起始数据的条目为填充屏幕是的情形
@@ -41,7 +48,7 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     private boolean mLoadMoreEndGone = false;
     private boolean isErr = false;
     private List<String> mDatas = new ArrayList<String>();
-    private int n = 100;
+    private int n = 100;//数据循环的条数
 
     public DailyFragment() {
     }
@@ -50,17 +57,29 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         return new DailyFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Calendar C = Calendar.getInstance();
+        C.setTimeZone(TimeZone.getTimeZone("GMT+08"));
+        this.mYear = C.get(Calendar.YEAR);
+        this.mMonth = C.get(Calendar.MONTH);
+        this.mDay = C.get(Calendar.DAY_OF_MONTH);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mine, container, false);
         ButterKnife.bind(this, view);
         initData();
+        setAction();
         return view;
     }
 
     private void initData() {
         initDate();
+        fab = getActivity().findViewById(R.id.fab_consult);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv_daily.setLayoutManager(linearLayoutManager);
 
@@ -70,7 +89,6 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         adapter.setOnLoadMoreListener(this, rv_daily);//加载更多添加监听
         adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         adapter.isFirstOnly(false);
-//        adapter.setPreLoadNumber(3);//预加载
         rv_daily.setAdapter(adapter);
         mCurrentCounter = adapter.getData().size();
 
@@ -177,5 +195,48 @@ public class DailyFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                     .setImageResource(R.id.iv_test, R.drawable.ic_launcher_background)
             .addOnClickListener(R.id.iv_test);
         }
+    }
+
+    /*设置recycleview滑动FloatingActionButton的显示与隐藏*/
+    public void setAction(){
+        rv_daily.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    fab.hide();
+                }else {
+                    fab.show();
+                }
+            }
+        });
+    }
+
+    public void showCanladarDialog(){
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(mYear,mMonth,mDay);
+        DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                mYear = year;
+                mMonth = monthOfYear;
+                mDay = dayOfMonth;
+                calendar.set(mYear, monthOfYear, mDay);
+            }
+        },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.setMaxDate(Calendar.getInstance());
+
+        Calendar minDate = Calendar.getInstance();
+        minDate.set(2015, 5, 20);
+        datePickerDialog.setMinDate(minDate);
+        datePickerDialog.vibrate(false);
+
+        datePickerDialog.show(getActivity().getFragmentManager(), DailyFragment.class.getSimpleName());
     }
 }

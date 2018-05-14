@@ -41,7 +41,7 @@ public class MineFragment extends Fragment {
     }
 
 
-    public MineFragment newInstance(){
+    public static MineFragment newInstance(){
         return new MineFragment();
     }
 
