@@ -22,6 +22,7 @@
 
         <activity android:name=".activity.DetailActivity"></activity>
         <activity android:name=".activity.ArouterActivity"></activity>
+        <activity android:name=".activity.JsoupActivity"></activity>
     </application>
 
 </manifest>

@@ -47,6 +47,5 @@ public class ConsultFragPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return titles[position];
-
     }
 }
